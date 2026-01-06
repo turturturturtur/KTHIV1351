@@ -31,6 +31,7 @@ VALUES
 COMMIT;
 
 -- Query 1
+CREATE OR REPLACE VIEW view_planned_course_report as --满足未来Discussion中的view的要求
 SELECT 
     cl.course_code AS "Course Code",
     ci.instance_id AS "Instance ID",
@@ -64,6 +65,10 @@ LEFT JOIN activity_type act ON pa.activity_name = act.activity_name
 WHERE ci.study_year = 2025
 GROUP BY cl.course_code, ci.instance_id, cl.hp, ci.period_code, ci.num_students --这样就能确定是同一个课啦
 ORDER BY ci.period_code, cl.course_code; -- 美化
+
+
+SELECT * FROM view_planned_course_report
+
 
 -- Query 2
 SELECT 
